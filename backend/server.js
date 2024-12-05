@@ -1,18 +1,15 @@
 require('dotenv').config()
 
+//imports modules
 const express = require("express")
 const mongoose = require("mongoose")
+const router = require("./router")
+
 const app = express()
 console.log(process.env.PORT)
 
-app.use((req, res, next) => {
-    console.log(req.path, req.method)
-    next()
-})
+app.use(router)
 
-app.get("/", (req, res) => {
-    res.json({mssg: "Hi"})
-})
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
